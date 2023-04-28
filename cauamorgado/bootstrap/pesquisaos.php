@@ -157,7 +157,15 @@ if(isset($_POST['del'])) {
             });
         });
 
-        function retornaProduto(id,produto,referencia,descricao, ativo){
+        function retornaProduto(produto,referencia,descricao, ativo){
+            console.log("chegou aqui " +produto)
+
+            $(".produto").val(produto);
+            $(".referencia").val(referencia);
+            $(".descricao").val(descricao);           
+        }
+
+        function retornaOS(id,produto,referencia,descricao, ativo){
             console.log("chegou aqui " +produto)
 
             $(".id").val(id);
@@ -273,7 +281,7 @@ if(isset($_POST['del'])) {
                     <input type="text" class="form-control" name="datafim" id="datafim" placeholder="Data de Fim" value="<?php echo isset($_POST['datafim']) ? $_POST['datafim'] : ''; ?>">
                     <script>
                         $(document).ready(function () {
-                            $('#datainicio').inputmask('99/99/9999', { placeholder: '__/__/____' });
+                            $('#datafim').inputmask('99/99/9999', { placeholder: '__/__/____' });
                         });
                     </script>
                 </div>
@@ -295,7 +303,7 @@ if(isset($_POST['del'])) {
                 <label for="inputPassword3" class="col-sm-2 control-label">Referência:</label>
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" class="form-control referencia" id="esp" name="referencia" placeholder="Referência" value="<?php echo isset($_POST['referencia']) ? $_POST['referencia'] : ''; ?>" maxlength="50"> 
+                        <input type="text" class="form-control referencia" id="esp" name="referencia" placeholder="Referência" value="<?= $referencia ?>" maxlength="50"> 
                         <span class="input-group-btn">
                             <button class="btn btn-default abrir" id="search1" type="button"><i class="glyphicon glyphicon-search"></i></button>
                         </span>
@@ -307,7 +315,7 @@ if(isset($_POST['del'])) {
                 <label for="inputPassword3" class="col-sm-2 control-label">Descrição:</label>
                 <div class="col-sm-10">
                     <div class="input-group">
-                        <input type="text" class="form-control descricao" name="descricao" placeholder="Descrição" value="<?php echo isset($_POST['descricao']) ? $_POST['descricao'] : ''; ?>" maxlength="50">
+                        <input type="text" class="form-control descricao" name="descricao" placeholder="Descrição" value="<?= $descricao ?>" maxlength="50">
                         <span class="input-group-btn">
                             <button class="btn btn-default abrir" id="search1" type="button"><i class="glyphicon glyphicon-search"></i></button>
                         </span>
@@ -437,7 +445,7 @@ if(isset($_POST['del'])) {
 
                 <td><a type="submit" href="cadastroos.php?id=<?=$id?>" class="btn btn-default" id=btnn>Editar</a></td>
                 
-                   <td> <button type="button" id="btnn2" onclick="retornaProduto('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                   <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
