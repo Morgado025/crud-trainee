@@ -1,0 +1,133 @@
+<html>
+	<head>
+		<script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	</head>
+	<body style="padding: 100px">
+		<div class="alert alert-info">
+			1. Ao clicar em lançar peça, deve validar se todos os campos estão preenchidos e exibir um alerta caso não estejam preenchidos<br />
+			2. Ao marcar o campo "apenas ajuste", deve-se esconder as opções de troca de peça do campo serviço realizado, e vice-versa <br />
+			3. Assim que os campos estiverem preenchidos e o usuário clicar em lançar peça, inserir uma linha nova na tabela com os dados digitados, e limpar os campos. <br />
+			4. todas as linhas da tabela precisam ter o botão de "remover", que ao ser clicado deverá deletar a linha específica.<br />
+		</div>
+		<div class="row">
+		  <div class="form-group col-md-3">
+		    <label for="codigo_peca">Código da Peça</label>
+		    <input type="text" class="form-control" id="codigo_peca" placeholder="Código da Peça">
+		  </div>
+		  <div class="form-group col-md-3">
+		  		<label for="descricao_peca">Descrição Peça</label>
+		  		<input type="text" class="form-control" id="descricao_peca" placeholder="Descrição da Peça">
+		  </div>
+		  <div class="form-group col-md-1">
+		  		<label for="qtde">Qtde.</label>
+		  		<input type="number" class="form-control"placeholder="Qtde" id="qtde">
+		  </div>
+		  <div class="form-group col-md-2">
+			  <div class="checkbox">
+			    <label><br />
+			      <input type="checkbox" id="apenas_ajuste"> Apenas Ajuste
+			    </label>
+			  </div>
+		  </div>
+		  <div class="form-group col-md-3">
+		  		<label for="qtde">Serviço realizado</label>
+		  		<select id="servico_realizado" class="form-control">
+		  			<option value="">Selecione o Serviço</option>
+		  			<option value="ajuste_calibragem" data-tipo="ajuste" style="display: none;">Ajuste (Calibragem)</option>
+		  			<option value="ajuste_limpeza" data-tipo="ajuste" style="display: none;">Ajuste (Limpeza)</option>
+		  			<option value="troca_gera_pedido" data-tipo="troca">Troca de Peça (Gerando Pedido)</option>
+		  			<option value="troca_usa_estoque" data-tipo="troca">Troca de Peça (Usando Estoque)</option>
+		  		</select>
+		  </div>
+		</div>
+		<div class="row" style="text-align: center;">
+			<button type="submit" id ="lanbot" class="btn btn-default">Lançar Peça</button>
+		</div>
+	</body>
+	<br /><br />
+	<table class="table">
+		<thead>
+			<th>Codigo Peça</th>
+			<th>Descrição Peça</th>
+			<th>Qtde.</th>
+			<th>Apenas Ajuste?</th>
+			<th>Serviço Realizado</th>
+			<th>Ações</th>
+		</thead>
+		<tbody id="dados_tabela">
+			<tr>
+				<td>Exemplo código</td>
+				<td>Exemplo descrição</td>
+				<td>1</td>
+				<td>Sim</td>
+				<td>Troca de Peça (Gerando Pedido)</td>
+				<td>
+					<button type="button" class="btn btn-danger">Remover</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<script>
+		$(function(){
+			$("#lanbot").click(function() {
+   
+   if ($("#codigo_peca").val() == "" && $("#descricao_peca").val() == "" && $("#qtde").val() == "" && $("#servico_realizado").val() == "") {
+	 alert("Preencha todos os campos obrigatórios!");
+	 return;
+   }
+   
+	var codigo_peca = $("#codigo_peca").val();
+    var descricao_peca = $("#descricao_peca").val();
+    var qtde = $("#qtde").val();
+    var apenas_ajuste = $("#apenas_ajuste").is(":checked");
+    var servico_realizado = $("#servico_realizado").val();
+
+   
+    var nova_linha = "<tr><td>" + codigo_peca + "</td><td>" + descricao_peca + "</td><td>" + qtde + "</td><td>" + (apenas_ajuste ? "Sim" : "Não") + "</td><td>" + servico_realizado + "</td><td><button type='button' class='btn btn-danger'>Remover</button></td></tr>";
+	$("#dados_tabela").append(
+	"<tr>" +
+		"<td>" + $("#codigo_peca").val() + "</td>" +
+		"<td>" + $("#descricao_peca").val() + "</td>" +
+		"<td>" + $("#qtde").val() + "</td>" +
+		"<td>" + ( $("#apenas_ajuste").prop("checked") ? "Sim" : "Não" ) + "</td>" +
+		"<td>" + $("#servico_realizado option:selected").text() + "</td>" +
+		"<td><button type='button' class='btn btn-danger'>Remover</button></td>" +
+	"</tr>"
+	); 
+
+});
+});
+
+
+$(document).ready(function() {
+
+$('#apenas_ajuste').change(function() {
+  if ($(this).is(':checked')) {
+
+	$('#servico_realizado option[data-tipo="troca"]').hide();
+	$('#servico_realizado option[data-tipo="ajuste"]').show();
+  } else {
+
+	$('#servico_realizado option[data-tipo="troca"]').show();
+	$('#servico_realizado option[data-tipo="ajuste"]').hide();
+  }
+
+});
+    
+  $("#dados_tabela").on("click", ".btn-danger", function() {
+    $(this).closest("tr").remove();
+  });
+
+});
+
+	</script>
+</html>

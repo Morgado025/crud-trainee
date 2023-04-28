@@ -1,0 +1,131 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(/img/ceu.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center center;
+    height: 100vh;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 120px 1fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "inicio" 
+}
+
+.container{
+    grid: flex;
+    justify-content: center;
+    color: #7a0606;
+    align-items: center;
+    
+}
+.inicio {
+    grid-area: cabecalho;
+    background-color: #7a0606dd;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;  
+}
+
+.inicio > h1 {
+    font-weight: 500;
+    font-size: 3.5rem;
+    margin-bottom: 0px;
+}
+
+.inicio > h3 {
+    margin: 0px;
+    font-weight: 350;
+    font-size: 2.0rem;
+}
+
+.principal {
+    grid-area: principal;
+    height: 485px;
+    
+    background-color: rgba(255, 240, 240, 0.804);
+    padding: 20px;
+}
+
+
+.form-horizontal{
+    position: relative;
+    height: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.2);
+}
+
+.form-login{
+    margin-bottom: 50px;
+    padding-bottom: 5px;
+}
+.form-login{
+    padding-bottom: 0px;
+    margin-bottom: 50px;
+}
+
+.checkbox {
+    padding: 10px;
+   
+}
+.form-entrar {
+    margin-bottom: 200px;
+
+}
+.form-conta {
+    margin-bottom: 0px;
+    outline: none;
+}
+
+.rodape {
+    grid-area: rodape;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5rem;
+    padding-right: 5px; /* tenho apenas um padding q está do lado direito */ 
+    color: #444;
+    margin-top: 20px;
+}
+
+#bot{
+    background-color: #7a0606;
+    color: white;
+}
+
+.panel-footer{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #7a0606;
+    padding-right: 20px;
+} 
+
+#alert{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 450;
+    color: #7a0606;
+    padding-right: 10px;
+    padding-top: 20;
+}
+
+#mud{
+    background-color:#f0f0f000;
+}
+
+::placeholder { 
+    font-style: italic;
+}

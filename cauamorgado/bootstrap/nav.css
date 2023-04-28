@@ -1,0 +1,156 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    height: 100%;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 120px 1fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "inicio" 
+}
+
+.container{
+    grid: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inicio {
+    grid-area: cabecalho;
+    background-color: #7a0606dd;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;  
+}
+
+.inicio > h1 {
+    font-weight: 500;
+    font-size: 3.5rem;
+    margin-bottom: 0px;
+}
+
+.inicio > h3 {
+    margin-top: 20px;
+    font-weight: 350;
+    font-size: 2.0rem;
+}
+
+.principal {
+    grid-area: principal;
+    height: 100%;
+    
+    background-color: rgb(255, 240, 240);
+    padding: 20px;
+}
+
+#navvv {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color:  #d3d3d39f;
+    border-color: #7a0606;
+}
+
+#produtos{
+    color: #7a0606;
+    transition: 0.5s;
+}
+
+#produtos:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+
+#peça{
+    color: #7a0606;
+    transition: 0.5s;
+}
+#peça:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+
+#tipoatendimento{
+    color: #7a0606;
+    transition: 0.5s;
+}
+#tipoatendimento:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+#defeito{
+    color: #7a0606;
+    transition: 0.5s;
+}
+#defeito:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+#cadastroos{
+    color: #7a0606;
+    transition: 0.5s;
+}
+#cadastroos:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+#contatos {
+    color: #7a0606;
+    transition: 0.5s;
+}
+#contatos:hover{    
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+#sobre{
+    color: #7a0606;
+    transition: 0.5s;
+}
+#sobre:hover{
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+#exit{
+    background-color: none;
+    color: white;
+    display:flex;   
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    text-decoration: none;
+}
+
+.navbar-brand{
+    color: #7a0606;
+}
+
+#menu-crud{
+    background-color: rgba(124, 9, 9, 0.539);
+}
+
+#search{
+    color: #7a0606;
+    display: flex;
+    font-size: 2rem;
+    font-weight: 400;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+#search:hover{    
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}

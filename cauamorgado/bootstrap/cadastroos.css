@@ -1,0 +1,184 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(/img/ceu.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-image: no-repeat;
+    height: 100%;
+    margin: 0px;
+    position: sticky;
+    left: 0;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 120px 1fr 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "inicio" 
+   
+}
+.container{
+    grid: flex;
+    justify-content: center;
+    color: #7a0606;
+    align-items: center;
+    
+}
+.inicio {
+    background-color: #7a0606;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;  
+}
+
+.inicio > h1 {
+    font-weight: 500;
+    font-size: 3.5rem;
+    margin-bottom: 0px;
+}
+
+.inicio > h3 {
+    margin: 0px;
+    font-weight: 350;
+    font-size: 2.0rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.principal {
+    grid-area: principal;
+    list-style: none;
+    background-color: rgb(255, 240, 240);
+    padding: 20px;
+    top: 100px;
+    bottom: 50px;
+    padding: 10px;
+}
+
+.rodape {
+    grid-area: rodape;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5rem;
+    padding-right: 5px; /* tenho apenas um padding q está do lado direito */ 
+    color: #444;
+    margin-top: 20px;
+}
+
+#bot{
+    background-color: #7a0606;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 35px;
+}
+
+#bot1{
+    background-color: #7a0606;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+#alert{
+    letter-spacing: 10px;
+}
+.panel-footer{
+    margin-top: 60px;
+    margin-left: 10px;
+    font-size: 1.6rem;
+    font-weight: 450;
+    color: #7a0606;
+    top: 100px;
+    bottom: 50px;
+    padding: 10px;
+}
+
+.img_pao{
+    list-style: none;
+}
+
+#mud{
+    background-color:rgb(255, 240, 240);
+    margin-top: 140px;
+}
+
+#search1{
+    color: #7a0606;
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 40;
+    margin-bottom:0px;
+    margin-left: 0px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    transition: 0.5s;
+    text-decoration: none;
+}
+#search1:hover{    
+    color:#00008B;
+    text-shadow: 0 0 8px white;
+}
+
+::placeholder { 
+    font-style: italic;
+}
+
+#selectdefeito{
+    font-style: italic;
+}
+#select_tipoatendimento{
+    font-style: italic;
+}
+
+
+.teste{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #databertura {
+    margin-left: -120px;
+    margin-top: 10px;
+  }
+  
+  #datafechamento {
+    margin-left: -100px;
+    margin-top: 10px;
+  }
+  
+  #datadigitacao {
+    margin-left: -70px;
+    margin-top: 10px;
+  }
+    
+    #datee {
+        margin-left: 10px;
+    }
+  
+
+    #btnn{
+        background-color: #035096;
+        color: white;
+        transition: 0.5s;
+    }
+    #btnn2{
+        background-color: #7a0606;
+        color: white;
+        transition: 0.5s;
+    }
+    
+    #btnn3{
+        background-color: #7a0606;
+        color: white;
+        transition: 0.5s;
+        
+    }
+    
