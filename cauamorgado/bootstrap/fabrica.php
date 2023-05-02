@@ -13,48 +13,36 @@ if ($_POST['form_submit'] == 'Enviar') {
 
     $Error = "";
 
-    $codigo = $_POST['codigo'];
-    $descricao = $_POST['descricao']; 
-    $defeito = (int)$_POST['defeito'];  
-    $fabrica = $_SESSION['fabrica'];
-
-        if (empty($_POST["codigo"])) {
-            $Error = "Código é um Campo Obrigatório";
-        } $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_SPECIAL_CHARS);
-
-        if (empty($_POST["descricao"])) {
-            $Error = "Descrição é um Campo Obrigatório";
-        }$descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-
-      if((strlen(trim($Error))==0) && ($defeito == 0)){
-        $sql_insert = "INSERT INTO defeito(codigo, descricao, fabrica) values ('$codigo', '$descricao', '$fabrica')";
+    $nome = $_POST['fabrica_name'];
+    $fabrica = (int)$_POST['fabrica_key'];
+    
+   
+      if((strlen(($Error))==0) && ($fabrica == 0)){
+        $sql_insert = "INSERT INTO fabrica(nome) values ('$nome')";
         $res = pg_query($con, $sql_insert);
         if(strlen(pg_last_error($con))>0){
             $Error = "Falha ao cadastrar dados";
         }else{
             $Suc = "Dados Cadastrados com Sucesso!";
-            $codigo = "";
-            $descricao = "";
+            $nome = "";
         }
 
     }else{
-        $sql_insert = "UPDATE defeito SET codigo = '$codigo', descricao ='$descricao' WHERE defeito = $defeito";
+        $sql_insert = "UPDATE fabrica SET nome = '$nome' WHERE fabrica = $fabrica";
         $Suc = "Dados atualizados com Sucesso!";    
-        $codigo = "";
-        $descricao = "";
-        $res_insert = pg_query($con, $sql_insert);      
-        unset($_POST['defeito']);
+        $nome = "";
+        $res_insert = pg_query($con, $sql_insert);     
+        unset($_POST['fabrica_key']);
     }      
-       
+         
         
 }
 
     if(isset($_POST['del'])){
-
-        $defeito_id = $_POST['defeito'];
-        $sql_delete = "DELETE FROM defeito WHERE defeito = $defeito_id";
+        $fabrica = (int)$_POST['fabrica_key'];
+        $sql_delete = "DELETE FROM fabrica WHERE fabrica = $fabrica";
         $res_delete = pg_query($con, $sql_delete);
-        unset($_POST['defeito']);
+        unset($_POST['fabrica_key']);
     }
 ?>
 
@@ -72,12 +60,11 @@ if ($_POST['form_submit'] == 'Enviar') {
     <title>Offdout - Cadastro</title>
     <script>
         
-        function retornadefeito(defeito, codigo, descricao){
-            console.log("chegou aqui " +defeito)
+        function retornafabrica(nome, key){
+            console.log("chegou aqui " +key)
 
-            $(".defeito").val(defeito);
-            $(".codigo").val(codigo);
-            $(".descricao").val(descricao);
+            $(".fabrica_name").val(nome);
+            $(".fabrica_key").val(key);
         }
 
     </script>
@@ -95,19 +82,17 @@ if ($_POST['form_submit'] == 'Enviar') {
             }
             </style>
         <div class="panel-body"> 
-        <form action="defeito.php" class="form-horizontal" method="POST">
+        <form action="fabrica.php" class="form-horizontal" method="POST">
             <br>
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Código:</label>
+                <label for="inputEmail3" class="col-sm-2 control-label">Nome:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control codigo" id="codigo" name="codigo" placeholder="Código" maxlength="10">
+                    <input type="text" class="form-control fabrica_name" id="fabrica_name" name="fabrica_name" placeholder="Nome" maxlength="50">
                 </div>
             </div>
-            <br>
             <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label ">Descrição:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control descricao" id="descricao" name="descricao" placeholder="Descrição" maxlength="50">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo isset($_POST['fabrica_key']) ? $_POST['fabrica_key'] : ''; ?>">
                 </div>
             </div>
             <br>
@@ -116,26 +101,15 @@ if ($_POST['form_submit'] == 'Enviar') {
                     <button type="submit" name="form_submit" value ="Enviar" class="btn btn-default">Registrar dados</button>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="hidden" class="form-control defeito" name="defeito" placeholder="defeito" value="<?php echo isset($_POST['defeito']) ? $_POST['defeito'] : ''; ?>">
-                </div>
-            </div>
-            <br>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo $_SESSION['fabrica']; ?>">
-                </div>
-            </div>
             <br>
         <div class=table>
             <center>
-                    <h3> Defeitos Cadastrados <h3>
+                    <h3> Fábricas Cadastradas <h3>
                         <br>
             </center>
         <?php
-            $fabrica = $_SESSION['fabrica'];
-            $sql = "SELECT * FROM defeito where fabrica = '$fabrica'";
+            
+            $sql = "SELECT * FROM fabrica";
             $res = pg_query($con, $sql);
             if (pg_num_rows($res) == 0) {
                 echo '<div class="alert alert-danger" role="alert">Nenhum Registro encontrado!</div>';
@@ -145,7 +119,7 @@ if ($_POST['form_submit'] == 'Enviar') {
         <table class="table table-bordered table">
         <thead>
             <tr>
-                <th>Descrição</th>            
+                <th>Nome</th>            
                 <th>Código</th>
                 <th>Edição</th>
                 <th>Remover</th>
@@ -155,16 +129,15 @@ if ($_POST['form_submit'] == 'Enviar') {
             <?php
 
             for($i = 0; $i < pg_num_rows($res); $i++) {
-                $defeito = pg_fetch_result($res, $i, 'defeito');
-                $descricao = pg_fetch_result($res, $i, 'descricao');
-                $codigo = pg_fetch_result($res, $i, 'codigo');
+                $nome = pg_fetch_result($res, $i, 'nome');
+                $key = pg_fetch_result($res, $i, 'fabrica');
     
             ?>
             <tr>
-                <td><a id="table" href="#" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');"><?= $descricao ?></a></td>
-                <td><?= $codigo ?></td>
-                <td><button type="button" id="btnn" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-default">Editar</button></td>
-                <td> <button type="button" id="btnn2" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <td><a id="table" href="#" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"><?= $nome ?></a></td>
+                <td><?= $key ?></td>
+                <td><button type="button" id="btnn" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"class="btn btn-default">Editar</button></td>
+                <td> <button type="button" id="btnn2" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

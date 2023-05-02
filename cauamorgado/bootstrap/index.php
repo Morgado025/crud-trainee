@@ -53,6 +53,12 @@ include "autentica.php";
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo isset($_POST['fabrica_key']) ? $_POST['fabrica_key'] : ''; ?>">
+                </div>
+            </div>
+            <br>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" name="form_submit" class="btn btn-default">Entrar</button>

@@ -43,6 +43,7 @@ if(isset($_POST['form_submit'])) {
     $datacompra = $_POST['datacompra'];
     $data_inicio = $_POST['datainicio'];
     $data_fim = $_POST['datafim'];
+    $fabrica = $_SESSION['fabrica'];
     
     $dataInicio = isset($_POST['datainicio']) ? DateTime::createFromFormat('d/m/Y', $_POST['datainicio']) : '';
     $dataInicio = $dataInicio instanceof DateTime ? $dataInicio->format('Y-m-d') : '';
@@ -86,16 +87,17 @@ if(isset($_POST['form_submit'])) {
             $dataInicio = $_POST['datainicio'];
             $dataFim = $_POST['datafim'];
             $tipo_data = $_POST['data']; 
-            
-            $cond = " WHERE os.$tipo_data BETWEEN '$dataInicio' AND '$dataFim'";
-        } else{
+            $cond = " AND os.$tipo_data BETWEEN '$dataInicio' AND '$dataFim'";
+        } else {
             $Error = "Defina o período a ser pesquisado";
         }
-
-        if((strlen(trim($Error))==0)){
-        $sql = "SELECT os.*, produto.descricao, produto.referencia
-                FROM OS
-                JOIN produto ON os.produto = produto.produto $cond";
+        
+        if ((strlen(trim($Error)) == 0)) {
+            $sql = "SELECT os.*, produto.descricao, produto.referencia
+                    FROM OS
+                    JOIN produto ON os.produto = produto.produto
+                    WHERE os.fabrica = '$fabrica'$cond";
+        }
            
         $res = pg_query($con, $sql);
         
@@ -105,7 +107,7 @@ if(isset($_POST['form_submit'])) {
             $Suc = "Dados Encontrados com Sucesso!";
         }
     }
-}
+
 
 if(isset($_POST['del'])) {
     $id = $_POST['id']; // ID do registro a ser excluído
@@ -332,6 +334,12 @@ if(isset($_POST['del'])) {
                     <input type="hidden" class="form-control id" name="id" placeholder="os" value="<?php echo isset($_POST['id']) ? $_POST['id'] : ''; ?>">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo $_SESSION['fabrica']; ?>">
+                </div>
+            </div>
+            <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" name="form_submit" class="btn btn-default bot1" id="bot1">Pesquisar Dados de OS</button>

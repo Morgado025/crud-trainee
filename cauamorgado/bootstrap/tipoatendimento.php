@@ -17,6 +17,7 @@ if ($_POST['form_submit'] == 'Enviar') {
     $descricao = $_POST['descricao']; 
     $tipo_atendimento = (int)$_POST['tipo_atendimento'];  
     $ativo = (int)($_POST['check'] == "t") ? 'true' : 'false';
+    $fabrica = $_SESSION['fabrica'];
 
         if (empty($_POST["codido"])) {
             $Error = "Código é um Campo Obrigatório";
@@ -28,7 +29,7 @@ if ($_POST['form_submit'] == 'Enviar') {
 
         
        if((strlen(trim($Error))==0) && ($tipo_atendimento == 0)){
-        $sql_insert = "INSERT INTO tipo_atendimento(codido, descricao, ativo) values ('$codido', '$descricao', '$ativo')";
+        $sql_insert = "INSERT INTO tipo_atendimento(codido, descricao, ativo, fabrica) values ('$codido', '$descricao', '$ativo', '$fabrica')";
         $res = pg_query($con, $sql_insert_);
         if(strlen(pg_last_error($con))>0){
             $Error = "Falha ao cadastrar dados";
@@ -142,14 +143,20 @@ if(isset($_POST['del'])){
                 </div>
             </div>
             <br>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value=""<?php echo $_SESSION['fabrica']; ?>">
+                </div>
+            </div>
+            <br>
         <div class=table>
             <center>
                     <h3> Tipos de Atendimentos Cadastrados <h3>
                         <br>
             </center>
         <?php
-            
-            $sql = "SELECT * FROM tipo_atendimento";
+            $fabrica = $_SESSION['fabrica'];
+            $sql = "SELECT * FROM tipo_atendimento where fabrica = $fabrica";
             $res = pg_query($con, $sql);
             if (pg_num_rows($res) == 0) {
                 echo '<div class="alert alert-danger" role="alert">Nenhum Registro encontrado!</div>';

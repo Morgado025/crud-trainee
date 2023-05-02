@@ -47,7 +47,7 @@ body {
 
 .principal {
     grid-area: principal;
-    height: 485px;
+    height: 610px;
     
     background-color: rgba(255, 240, 240, 0.804);
     padding: 20px;

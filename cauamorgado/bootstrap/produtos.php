@@ -7,6 +7,7 @@ include('conexao.php');
 ?>
 
 <?php
+
 if ($_POST['form_submit'] == 'Enviar') {
     
     $Error = "";
@@ -17,7 +18,7 @@ if ($_POST['form_submit'] == 'Enviar') {
     $ativo = (int)($_POST['check'] == "t") ? 'true' : 'false';
     $produto = (int)$_POST["produto"];
     $alertClass = strlen(trim($Error)) == 0 ? 'alert-success' : 'alert-warning';
-
+    $fabrica = $_SESSION['fabrica'];
     
         if (empty($_POST["referencia"])) {
             $Error = "Referência é um Campo Obrigatório";
@@ -32,7 +33,7 @@ if ($_POST['form_submit'] == 'Enviar') {
         }
 
         if((strlen(trim($Error))==0) && ($produto == 0)){
-            $sql_insert = "INSERT INTO produto(referencia, descricao, garantia, ativo) values ('$referencia', '$descricao', '$garantia', $ativo)";
+            $sql_insert = "INSERT INTO produto(referencia, descricao, garantia, ativo, fabrica) values ('$referencia', '$descricao', '$garantia', $ativo, '$fabrica')";
             $res = pg_query($con, $sql_insert);
             if(strlen(pg_last_error($con))>0){
                 $Error = "Falha ao Encontrar dados!";
@@ -144,6 +145,12 @@ if ($_POST['form_submit'] == 'Enviar') {
             </div>
             <br>
             <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo $_SESSION['fabrica']; ?>">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" name="form_submit" id="bot3" class="btn btn-default" value="Enviar">Registrar dados</button>
                 </div>
@@ -160,8 +167,8 @@ if ($_POST['form_submit'] == 'Enviar') {
                         <br>
             </center>
         <?php
-            
-            $sql = "SELECT * FROM produto";
+            $fabrica = $_SESSION['fabrica'];
+            $sql = "SELECT * FROM produto where fabrica = $fabrica";
             $res = pg_query($con, $sql);
             if (pg_num_rows($res) == 0) {
                 echo '<div class="alert alert-danger" role="alert">Nenhum Registro encontrado!</div>';

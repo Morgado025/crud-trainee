@@ -10,6 +10,7 @@ if(isset($_POST['form_submit'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirmarsenha = $_POST['confirmarsenha'];
+    $fabrica = (int)$_POST['fabrica_key'];
         
         if (empty($_POST["nome"])) {
         $Error = "Nome é um Campo Obrigatório";
@@ -41,7 +42,7 @@ if(isset($_POST['form_submit'])) {
                 }      
                 
             if(strlen(trim($Error))==0){
-                $sql = "insert into usuario(nome, email, senha) values ('$nome', '$email', '$senha')";
+                $sql = "INSERT INTO usuario(nome, email, senha, fabrica) VALUES ('$nome', '$email', '$senha', '$fabrica')";
                 $res = pg_query($con, $sql);
                 if(strlen(pg_last_error($con)) > 0){
                     $Error = "Falha ao cadastrar";
@@ -100,6 +101,39 @@ if(isset($_POST['form_submit'])) {
                     <input type="password" class="form-control" name="confirmarsenha" placeholder="Confirme sua senha">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo isset($_POST['fabrica_key']) ? $_POST['fabrica_key'] : ''; ?>">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="fabrica_key" class="col-sm-2 control-label">Fábrica:</label>
+                <div class="col-sm-10">
+                <select class="form-control" id="fabrica_key" name="fabrica_key">
+                        <option value=''>Selecione a Fábrica</option>
+                        <?php
+                        $sql = "SELECT * FROM fabrica";
+
+                        $res = pg_query($con, $sql);
+
+                        for($i = 0; $i < pg_num_rows($res); $i++) {
+                            $nome = pg_fetch_result($res, $i, 'nome');
+                            $key = pg_fetch_result($res, $i, 'fabrica');
+                           
+                            echo "<option value='$key'";
+                            if (isset($_GET['id']) && $tipo_atendimento == $select_tipoatendimento) {
+                                echo " selected";
+                            }
+                            echo ">$nome - $key </option>";
+                            $teste = $_POST['tipo_atendimento2'];
+                        }                       
+                        ?>
+                    </select>
+
+                    </div>
+                </div>
+            <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" name="form_submit" class="btn btn-default">Criar sua conta</button>

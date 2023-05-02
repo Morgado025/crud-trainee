@@ -34,6 +34,9 @@ include "config/conexao.php";
             <div class="conteudo col-md-12">
                 <nav id="navvv" class="navbar navbar-expand-md navbar-light bg-light">
                     <ul>
+                        <a id="fabrica" class="navbar-brand" href="fabrica.php">Fábrica</a>
+                    </ul>
+                    <ul>
                         <a id="produtos" class="navbar-brand" href="produtos.php">Produtos</a>
                     </ul>
                     <ul>
@@ -51,9 +54,8 @@ include "config/conexao.php";
                     <ul>
                         <a id="contatos" class="navbar-brand" href="pesquisaos.php">Pesquisa de OS</a>
                     </ul>
-                     <ul>
-                        <a id="search" class="glyphicon glyphicon-search" href="search.php"></a>
-                    </ul>
+                   
+            
             </div>
                 </nav>
     <script src="js/bootstrap.min.js"></script>

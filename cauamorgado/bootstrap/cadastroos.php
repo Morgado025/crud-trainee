@@ -1,5 +1,5 @@
 <?php
-include('valida.php');
+include('autentica.php');
 
 include('nav.php');
 
@@ -38,6 +38,7 @@ if(isset($_POST['form_submit'])) {
     $defeito = (int)$_POST['defeito'];
     $tipo_atendimento = (int)$_POST['tipo_atendimento'];
     $select_tipoatendimento = $_POST['select_tipoatendimento'];
+    $fabrica = $_SESSION['fabrica'];
 
     $dataabertura = preg_replace('/[^0-9\/-]/', '', $dataabertura );
     $dataabertura  = str_replace('-', '', $dataabertura ); 
@@ -168,7 +169,7 @@ if(isset($_POST['form_submit'])) {
         
      
         if((strlen(trim($Error))==0) && ($os == 0)){
-            $sql_insert = "insert into os(data_abertura, nota_fiscal, data_compra, aparencia, acessorio, nome_consumidor, cpf_cnpj, cep_consumidor, estado_consumidor, cidade_consumidor, bairro_consumidor, endereco_consumidor, numero_consumidor, telefone_consumidor, celular_consumidor, email_consumidor, produto, numero_serie, defeito, complemento, tipo_atendimento) values ('$dataabertura', '$notafiscal', '$datacompra', '$aparencia', '$acessorios', '$nome', '$cpf', '$cep', '$estado', '$cidade', '$bairro', '$endereco', '$numero','$telefone', '$celular', '$email', '$produto', '$numero_serie', '$selectdefeito', '$complemento', '$select_tipoatendimento')";
+            $sql_insert = "insert into os(data_abertura, nota_fiscal, data_compra, aparencia, acessorio, nome_consumidor, cpf_cnpj, cep_consumidor, estado_consumidor, cidade_consumidor, bairro_consumidor, endereco_consumidor, numero_consumidor, telefone_consumidor, celular_consumidor, email_consumidor, produto, numero_serie, defeito, complemento, tipo_atendimento, fabrica) values ('$dataabertura', '$notafiscal', '$datacompra', '$aparencia', '$acessorios', '$nome', '$cpf', '$cep', '$estado', '$cidade', '$bairro', '$endereco', '$numero','$telefone', '$celular', '$email', '$produto', '$numero_serie', '$selectdefeito', '$complemento', '$select_tipoatendimento', '$fabrica')";
             $res = pg_query($con, $sql_insert);
             if(strlen(pg_last_error($con))>0){
                 $Error = "Falha ao cadastrar dados";
@@ -709,6 +710,11 @@ if(isset($_GET['id'])){
             <div class="form-group">
                 <div class="col-sm-10">
                     <input type="hidden" class="form-control os" name="os" placeholder="os" value="<?= $id?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control fabrica_key" id="fabrica_key" name="fabrica_key" placeholder="Fábrica Key" value="<?php echo $_SESSION['fabrica']; ?>">
                 </div>
             </div>
             <div class="form-group">
