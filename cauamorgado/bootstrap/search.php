@@ -1,5 +1,7 @@
 <?php 
 include ('config/conexao.php');
+
+include ('autentica.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,19 +22,22 @@ include ('config/conexao.php');
 </head> 
 <body>
     <?php
+    $fabrica = $_SESSION['fabrica'];
     $referencia = $_GET['referencia'];
     $descricao = $_GET['descricao']; 
 
     if (!empty($_GET["referencia"])) {
-        $sql = "SELECT * FROM produto WHERE referencia LIKE '%$referencia%'";
+        $sql = "SELECT * FROM produto WHERE referencia LIKE '%$referencia%' AND fabrica = $fabrica";
     }
 
     if (!empty($_GET["descricao"])) {
-        $sql = "SELECT * FROM produto WHERE descricao LIKE '%$descricao%'";
+        $sql = "SELECT * FROM produto WHERE descricao LIKE '%$descricao%' AND fabrica = $fabrica";
     }
     
     $res = pg_query($con, $sql);
-    if(pg_num_rows($res) > 0){
+    if (pg_num_rows($res) == 0) {
+        echo '<div class="alert alert-danger" role="alert">Nenhum Registro encontrado!</div>';
+    } else {
     ?>
 
     <table class="table table-bordered">

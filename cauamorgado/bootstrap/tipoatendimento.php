@@ -134,7 +134,7 @@ if(isset($_POST['del'])){
             <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="form_submit" class="btn btn-default" value="Enviar" >Registrar dados</button>
+                    <button type="submit" name="form_submit" id="bot3" class="btn btn-default" value="Enviar" >Registrar dados</button>
                 </div>
             </div>
             <div class="form-group">

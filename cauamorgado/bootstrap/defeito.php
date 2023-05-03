@@ -113,7 +113,7 @@ if ($_POST['form_submit'] == 'Enviar') {
             <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="form_submit" value ="Enviar" class="btn btn-default">Registrar dados</button>
+                    <button type="submit" name="form_submit" id="bot3" value ="Enviar" class="btn btn-default">Registrar dados</button>
                 </div>
             </div>
             <div class="form-group">

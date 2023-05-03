@@ -98,7 +98,7 @@ if ($_POST['form_submit'] == 'Enviar') {
             <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="form_submit" value ="Enviar" class="btn btn-default">Registrar dados</button>
+                    <button type="submit" name="form_submit" id="bot3" value ="Enviar" class="btn btn-default">Registrar dados</button>
                 </div>
             </div>
             <br>
@@ -116,11 +116,10 @@ if ($_POST['form_submit'] == 'Enviar') {
             } else {
         ?>
 
-        <table class="table table-bordered table">
+        <table class="table table-bordered table teste">
         <thead>
             <tr>
                 <th>Nome</th>            
-                <th>Código</th>
                 <th>Edição</th>
                 <th>Remover</th>
             </tr>
@@ -135,7 +134,6 @@ if ($_POST['form_submit'] == 'Enviar') {
             ?>
             <tr>
                 <td><a id="table" href="#" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"><?= $nome ?></a></td>
-                <td><?= $key ?></td>
                 <td><button type="button" id="btnn" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"class="btn btn-default">Editar</button></td>
                 <td> <button type="button" id="btnn2" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir

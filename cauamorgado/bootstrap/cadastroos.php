@@ -432,7 +432,8 @@ if(isset($_GET['id'])){
                 <select class="form-control" name="select_tipoatendimento" id="select_tipoatendimento">
                         <option value=''>Selecione o Atendimento</option>
                         <?php
-                        $sql = "SELECT * FROM tipo_atendimento WHERE ativo = true";
+                        $fabrica = $_SESSION['fabrica'];
+                        $sql = "SELECT * FROM tipo_atendimento WHERE ativo = true and fabrica = $fabrica";
 
                         $res = pg_query($con, $sql);
 
@@ -562,6 +563,11 @@ if(isset($_GET['id'])){
                         }
                     })
                 });
+
+                $(document).ready(function () {
+                            $('#cep').inputmask('99999-999', { placeholder: '_____-___' });
+                });
+
                 </script>
                 </div>
             </div>
@@ -681,7 +687,8 @@ if(isset($_GET['id'])){
                 <select class="form-control" name="selectdefeito" id="selectdefeito">
                         <option value=''>Selecione o Defeito</option>
                         <?php
-                        $sql = "SELECT * FROM defeito";
+                        $fabrica = $_SESSION['fabrica'];
+                        $sql = "SELECT * FROM defeito where fabrica = $fabrica";
                         $res = pg_query($con, $sql);
 
                         for($i = 0; $i < pg_num_rows($res); $i++) {
