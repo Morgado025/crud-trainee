@@ -447,7 +447,7 @@ if(isset($_GET['id'])){
                                 echo " selected";
                             }
                             echo ">$codido - $descricao2 </option>";
-                            $teste = $_POST['tipo_atendimento2'];
+                          
                         }                       
                         ?>
                     </select>

@@ -1,5 +1,7 @@
 <?php
 include "config/conexao.php";
+
+include "autentica.php";
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +29,16 @@ include "config/conexao.php";
         </header>
         <div class="collapse navbar-collapse" id="menu-crud">
                 <ul class="nav navbar-nav navbar-right">
-                    <a type="submit" href="logout.php" id ="exit" class="glyphicon glyphicon-log-out">  </a> <?php echo $_SESSION['usuario']; ?>  
+                    <a type="submit" href="logout.php" id ="exit" class="glyphicon glyphicon-log-out">  
+                    </a>  
                 </ul>
+        
+        <div class="collapse navbar-collapse" id="entry-crud">
+                <ul class="nav navbar-nav navbar-right">
+                    <a type="submit" href="recadastro.php?usuario=<?=$_SESSION['usuario']?>" id ="entry" class="glyphicon glyphicon-user">  
+                    <?php echo $_SESSION['nome']; ?></a>  
+                </ul>   
+        </div>
         </div>
         <main class="principal">
             <div class="conteudo col-md-12">

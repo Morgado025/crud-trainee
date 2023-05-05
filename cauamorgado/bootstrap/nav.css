@@ -4,7 +4,7 @@
 }
 body {
     height: 100%;
-    margin: 0px;
+    margin-bottom: 0px;
     display: grid;
     grid-template-rows: 120px 1fr 60px;
     grid-template-columns: 1fr;
@@ -25,7 +25,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;  
+    padding-bottom: 10px;
+    
 }
 
 .inicio > h1 {
@@ -43,10 +44,10 @@ body {
 .principal {
     grid-area: principal;
     height: 100%;
-    
     background-color: rgb(255, 240, 240);
     padding: 20px;
 }
+
 
 #navvv {
     display:flex;
@@ -128,6 +129,23 @@ body {
     padding-top: 5px;
     text-decoration: none;
 }
+#entry{
+    
+    background-color: none;
+    color: white;
+    align-items: center;
+    font-size: 1.9rem;
+    font-weight: 500;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+
+.title {
+   
+    font-size: 2px;
+    letter-spacing: 2px;
+}
 
 .navbar-brand{
     color: #7a0606;
@@ -135,7 +153,25 @@ body {
 
 #menu-crud{
     background-color: rgba(124, 9, 9, 0.539);
+    padding-bottom: 10px;
+    
+    
 }
+#entry-crud{
+    color: white;
+    float: left;
+    margin-top: -5px;
+    text-decoration: none;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 400;
+    padding-right: 10px;
+    padding-bottom: 0;
+    padding-top: 10px;
+   
+}
+
+  
 
 #search{
     color: #7a0606;

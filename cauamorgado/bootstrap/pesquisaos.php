@@ -110,7 +110,7 @@ if(isset($_POST['form_submit'])) {
 
 
 if(isset($_POST['del'])) {
-    $id = $_POST['id']; // ID do registro a ser excluído
+    $id = $_POST['id']; 
     $sql = "DELETE FROM os WHERE os = $id";
     $res = pg_query($con, $sql);
   
