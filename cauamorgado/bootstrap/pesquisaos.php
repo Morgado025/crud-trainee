@@ -452,6 +452,7 @@ if(isset($_POST['del'])) {
                 <td><?= $produto ?></td>
 
                 <td><a type="submit" href="cadastroos.php?id=<?=$id?>" class="btn btn-default" id=btnn>Editar</a></td>
+                <td><a type="submit" href="exportar_os.php" class="btn btn-default" id=bot6>Exportar</a></td>
                 
                    <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir

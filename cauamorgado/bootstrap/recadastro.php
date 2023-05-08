@@ -48,13 +48,12 @@ if(isset($_POST['form_submit'])) {
                 
             if(strlen(trim($Error))==0){
                 $sql = "UPDATE usuario SET nome ='$nome', email ='$email', senha='$senha', fabrica='$key' where usuario = $usuario";
-                echo nl2br($sql);
                 $res = pg_query($con, $sql);
                 if(strlen(pg_last_error($con)) > 0){
                     $Error = "Falha ao cadastrar";
                 }
                 else{
-                    $Suc = "Usuário Cadastrado com Sucesso!";
+                    $Suc = "Usuário Atualizado com Sucesso!";
                 }
             
             }
@@ -151,7 +150,7 @@ if(isset($_POST['form_submit'])) {
             <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" name="form_submit" class="btn btn-default">Criar sua conta</button>
+                    <button type="submit" name="form_submit" class="btn btn-default">Atualize sua conta</button>
                 </div>
             </div>
             <div class="form-group">

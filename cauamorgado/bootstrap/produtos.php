@@ -237,6 +237,10 @@ if ($_POST['form_submit'] == 'Enviar') {
         <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
+                    <a type="submit" href="exportar_produto.php" class="btn btn-default" id=bot6>Exportar</a>
+                </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>
                 </div>
                 <div class="panel-footer" id="mud">

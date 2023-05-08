@@ -22,7 +22,25 @@ foreach ($linhas as $linha) {
     $res = pg_query($con, $sql_insert);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
+
+
+
 
 
 

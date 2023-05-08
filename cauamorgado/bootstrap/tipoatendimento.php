@@ -223,6 +223,10 @@ if(isset($_POST['del'])){
         </table>
         </div>
         <br>
+        <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <a type="submit" href="exportar_tipoatendimento.php" class="btn btn-default" id=bot6>Exportar</a>
+                </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>
