@@ -74,7 +74,7 @@ body {
 #bot{
     background-color: #7a0606;
     color: white;
-    margin-left: 793px;
+    margin-left: 780px;
     margin-top: 20px;    
 }
 
@@ -179,4 +179,7 @@ body {
     
 }
 
+.panel-body{
+   margin-top:130px;
+}
 

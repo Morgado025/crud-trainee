@@ -2,6 +2,13 @@
 include ('/home/usuario/cauamorgado/bootstrap/config/conexao.php');
 include ('autentica.php');
 
+$id = $_GET['id'];
+
+if (isset($_GET['id'])){
+  $id = $_GET['id'];
+  $cond .= " AND os = '$id'";
+}
+
 
 $fabrica = $_SESSION['fabrica'];
 
@@ -18,10 +25,10 @@ if ($arquivo !== false) {
   $header = array('Data de Abertura', 'Tipo Atendimento', 'Nota Fiscal', 'Data de Compra', 'Aparência', 'Acessórios', 'Nome', 'CPF', 'CEP', 'Estado', 'Cidade', 'Bairro', 'Endereço', 'Número', 'Telefone', 'Complemento', 'Celular', 'Email', 'Número de Série', 'Referência', 'Descrição', 'Defeito', 'Produto');
   fputcsv($arquivo, $header);
 
-  $sql = "SELECT $tabela.*, produto.descricao, produto.referencia
+$sql = "SELECT $tabela.*, produto.descricao, produto.referencia
   FROM $tabela
   JOIN produto ON $tabela.produto = produto.produto
-  WHERE $tabela.fabrica = '$fabrica'$cond";
+  WHERE $tabela.fabrica = '$fabrica' $cond";
   
   $res = pg_query($con, $sql);
   while ($row = pg_fetch_array($res)) {

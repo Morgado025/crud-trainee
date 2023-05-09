@@ -27,7 +27,7 @@ include "autentica.php";
         <div class="panel-body"> 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form-horizontal">
             <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
+                <label type="email" for="inputEmail3" class="col-sm-2 control-label">Email:</label>
                 <div class="col-sm-10">
                     <span class="input-group-addon">
                         <i id="teste" class="glyphicon glyphicon-user"> </i>

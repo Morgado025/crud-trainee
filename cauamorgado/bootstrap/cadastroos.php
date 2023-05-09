@@ -381,13 +381,13 @@ if(isset($_GET['id'])){
         <div class="panel-body"> 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="form-horizontal" method="POST">
             <br>
-            <div class="form-group">
+            <div class="panel-body"> 
                 
                 <center>
                     <h3> Cadastro de OS <h3>
                         <br>
                 </center>
-                
+                <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label" >Data de Abertura:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="dataabertura" id="dataabertura" placeholder="Data de Abertura"  value="<?= $dataabertura ?>">

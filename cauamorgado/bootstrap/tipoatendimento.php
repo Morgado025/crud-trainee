@@ -171,6 +171,7 @@ if(isset($_POST['del'])){
                 <th>Código</th>
                 <th>Status</th>
                 <th>Edição</th>
+                <th>Export</th>
                 <th>Remover</th>
             </tr>
         </thead>
@@ -198,6 +199,7 @@ if(isset($_POST['del'])){
                 <td><?= $codido ?></td>
                 <td><?= $ativo ?></td>
                 <td><button type="button" id="btnn" onclick="retornatipo_atendimento('<?= $tipo_atendimento ?>', '<?= $codido ?>', '<?= $descricao ?>', '<?= $ativo ?>');" class="btn btn-default">Editar</button></td>
+                <td>  <a type="submit" href="exportar_tipoatendimento.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornatipo_atendimento('<?= $tipo_atendimento ?>', '<?= $codido ?>', '<?= $descricao ?>' , '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
@@ -223,10 +225,6 @@ if(isset($_POST['del'])){
         </table>
         </div>
         <br>
-        <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a type="submit" href="exportar_tipoatendimento.php" class="btn btn-default" id=bot6>Exportar</a>
-                </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>

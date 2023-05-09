@@ -113,7 +113,6 @@ if ($_POST['form_submit'] == 'Enviar') {
         </style>
         <div class="panel-body"> 
         <form action="produtos.php" class="form-horizontal" method="POST"><br>
-            <br>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label referencia">Referência:</label>
                 <div class="col-sm-10">
@@ -183,6 +182,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <th>Garantia</th>
                 <th>Status</th>
                 <th>Edição</th>
+                <th>Export</th>
                 <th>Remover</th>
             </tr>
         </thead>
@@ -211,6 +211,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <td><?= $garantia ?></td>
                 <td><?= $ativo ?></td>
                 <td><button type="button" id="btnn" onclick="retornaProduto('<?= $produto ?>', '<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-default">Editar</button></td>
+                <td><a type="submit" href="exportar_produto.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornaProduto('<?= $produto ?>', '<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
@@ -234,11 +235,7 @@ if ($_POST['form_submit'] == 'Enviar') {
         <?php } ?>
         </table>
         </div>
-        <br>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a type="submit" href="exportar_produto.php" class="btn btn-default" id=bot6>Exportar</a>
-                </div>
+            <br>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>

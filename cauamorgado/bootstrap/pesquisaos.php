@@ -55,6 +55,7 @@ if(isset($_POST['form_submit'])) {
     $databertura  = str_replace('-', '', $databertura ); 
         if (!empty($_POST["databertura"])){
             $cond .= "and os.data_abertura = '$databertura'";
+            $num_cond = 1;
         }
 
     
@@ -62,25 +63,30 @@ if(isset($_POST['form_submit'])) {
     $datacompra  = str_replace('-', '', $datacompra ); 
         if (!empty($_POST["datadigitacao"])) {
             $cond .= "and os.data_compra = '$datacompra'";
+            $num_cond = 2;
         }
 
         $cpf = preg_replace('/[^0-9]/', '', $cpf);
         if (!empty($cpf)) {
         $cond .= "and os.cpf_cnpj = '$cpf'";
+        $num_cond = 3;
             } else if (!filter_var($cpf, FILTER_VALIDATE_INT)) {
     
 
         } if (!empty($_POST["numero_serie"])) {
             $cond .= "and os.numero_serie = '$numero_serie'";
+            $num_cond = 4;
         }
         
         if (!empty($_POST["referencia"])) {
             $cond .= "and produto.referencia = '$referencia'";
+            $num_cond = 5;
 
         }
 
         if (!empty($_POST["descricao"])) {
             $cond .= "and produto.descricao = '$descricao'";
+            $num_cond = 6;
 
         }
         if (isset($_POST['datainicio']) && isset($_POST['datafim']) && !empty($_POST['datainicio']) && !empty($_POST['datafim'])) {
@@ -88,6 +94,7 @@ if(isset($_POST['form_submit'])) {
             $dataFim = $_POST['datafim'];
             $tipo_data = $_POST['data']; 
             $cond = " AND os.$tipo_data BETWEEN '$dataInicio' AND '$dataFim'";
+            $num_cond = 7;
         } else {
             $Error = "Defina o período a ser pesquisado";
         }
@@ -452,8 +459,7 @@ if(isset($_POST['del'])) {
                 <td><?= $produto ?></td>
 
                 <td><a type="submit" href="cadastroos.php?id=<?=$id?>" class="btn btn-default" id=btnn>Editar</a></td>
-                <td><a type="submit" href="exportar_os.php" class="btn btn-default" id=bot6>Exportar</a></td>
-                
+                <td><a type="submit" href="exportar_os.php?id=<?=$id?>" class="btn btn-default" id=bot6>Exportar</a></td>
                    <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>

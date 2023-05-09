@@ -146,6 +146,7 @@ if (isset($_POST['del'])) {
                 <th>Descrição</th>            
                 <th>Referência</th>
                 <th>Edição</th>
+                <th>Export</th>
                 <th>Remover</th>
             </tr>
         </thead>
@@ -163,6 +164,7 @@ if (isset($_POST['del'])) {
                 </a></td>
                 <td><?= $referencia ?></td>
                 <td><button type="button" id="btnn" onclick="retornaPeca('<?= $peca ?>', '<?= $referencia ?>', '<?= $descricao ?>');" class="btn btn-default">Editar</button></td>
+                <td> <a type="submit" href="exportar_peca.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornaPeca('<?= $peca ?>', '<?= $referencia ?>', '<?= $descricao ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
@@ -188,10 +190,6 @@ if (isset($_POST['del'])) {
         </table>
         </div>
         <br>
-        <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a type="submit" href="exportar_peca.php" class="btn btn-default" id=bot6>Exportar</a>
-                </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>

@@ -148,6 +148,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <th>Descrição</th>            
                 <th>Código</th>
                 <th>Edição</th>
+                <th>Export</th>
                 <th>Remover</th>
             </tr>
         </thead>
@@ -164,6 +165,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <td><a id="table" href="#" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');"><?= $descricao ?></a></td>
                 <td><?= $codigo ?></td>
                 <td><button type="button" id="btnn" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-default">Editar</button></td>
+                <td><a type="submit" href="exportar_defeito.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
@@ -188,10 +190,6 @@ if ($_POST['form_submit'] == 'Enviar') {
         </table>
         </div>
             <br>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <a type="submit" href="exportar_defeito.php" class="btn btn-default" id=bot6>Exportar</a>
-                </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>
