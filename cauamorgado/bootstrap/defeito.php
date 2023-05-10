@@ -61,7 +61,7 @@ if ($_POST['form_submit'] == 'Enviar') {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -165,7 +165,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <td><a id="table" href="#" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');"><?= $descricao ?></a></td>
                 <td><?= $codigo ?></td>
                 <td><button type="button" id="btnn" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-default">Editar</button></td>
-                <td><a type="submit" href="exportar_defeito.php" class="btn btn-default">Exportar</a></td>
+                <td><a type="submit" href="export-php/exportar_defeito.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornadefeito('<?= $defeito ?>', '<?= $codigo ?>', '<?= $descricao ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>

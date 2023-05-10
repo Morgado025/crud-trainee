@@ -9,15 +9,13 @@ body {
     background-attachment: fixed;
     background-image: no-repeat;
     height: 100%;
-    margin: 0px;
-    position: sticky;
-    left: 0;
-    width: 100%;
+    margin-bottom: 0px;
     display: grid;
     grid-template-rows: 120px 1fr 60px;
     grid-template-columns: 1fr;
     grid-template-areas: 
         "inicio" 
+   
 }
 .container{
     grid: flex;
@@ -48,7 +46,6 @@ body {
     font-size: 2.0rem;
     margin-top: 10px;
     margin-bottom: 10px;
-    
 }
 
 .principal {
@@ -56,8 +53,6 @@ body {
     list-style: none;
     background-color: rgb(255, 240, 240);
     padding: 20px;
-    
-    
 }
 
 .rodape {
@@ -78,28 +73,11 @@ body {
     margin-top: 20px;    
 }
 
-#bot3{
-    background-color: #7a0606;
-    color: white; 
-}
-
-#bot2{
+#bot1{
     background-color: #7a0606;
     color: white;
-    margin-left: 698px;
-    margin-top: 20px;    
-}
-#bot6{
-    background-color: #7a0606;
-    color: white;
-    margin-left: 785px;
-    margin-top: 20px;    
-}
-#bot5{
-    background-color: #7a0606;
-    color: white;
-    margin-left: 712px;
-    margin-top: 20px;    
+    margin-top: 20px;
+    margin-bottom: 0px;
 }
 
 #alert{
@@ -111,6 +89,9 @@ body {
     font-size: 1.6rem;
     font-weight: 450;
     color: #7a0606;
+    top: 100px;
+    bottom: 50px;
+    padding: 10px;
 }
 
 .img_pao{
@@ -122,21 +103,19 @@ body {
     margin-top: 140px;
 }
 
-
-#search{
+#search1{
     color: #7a0606;
     display: flex;
-    font-size: 2rem;
-    font-weight: 400;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    font-size: 1.6rem;
+    font-weight: 40;
+    margin-bottom:0px;
+    margin-left: 0px;
+    padding-bottom: 10px;
+    padding-left: 10px;
     transition: 0.5s;
     text-decoration: none;
 }
-
-#search:hover{    
+#search1:hover{    
     color:#00008B;
     text-shadow: 0 0 8px white;
 }
@@ -145,41 +124,59 @@ body {
     font-style: italic;
 }
 
-.table{
-    padding-left:50px;
-    padding-right:50px;
-    color: #7a0606;
+#selectdefeito{
+    font-style: italic;
+}
+#select_tipoatendimento{
+    font-style: italic;
 }
 
-#table{
-    color: #7a0606;
-    transition: 0.1s;
-    text-decoration: none;
-}
-#table:hover{
-    color:#00008B;
-    text-shadow: 0 0 8px white;
-}
 
-#btnn{
-    background-color: #035096;
-    color: white;
-    transition: 0.5s;
-}
-#btnn2{
-    background-color: #7a0606;
-    color: white;
-    transition: 0.5s;
-}
-
-#btnn3{
-    background-color: #7a0606;
-    color: white;
-    transition: 0.5s;
+.teste{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #databertura {
+    margin-left: -120px;
+    margin-top: 10px;
+  }
+  
+  #datafechamento {
+    margin-left: -100px;
+    margin-top: 10px;
+  }
+  
+  #datadigitacao {
+    margin-left: -70px;
+    margin-top: 10px;
+  }
     
-}
+    #datee {
+        margin-left: 10px;
+    }
+  
 
-.panel-body{
-   margin-top:130px;
-}
+    #btnn{
+        background-color: #035096;
+        color: white;
+        transition: 0.5s;
+    }
+    #btnn2{
+        background-color: #7a0606;
+        color: white;
+        transition: 0.5s;
+    }
+    
+    #btnn3{
+        background-color: #7a0606;
+        color: white;
+        transition: 0.5s;
+        
+    }
+
+    .panel-body{
+        margin-top:60px;
+    }   
 

@@ -1,12 +1,12 @@
 <?php
 include ('/home/usuario/cauamorgado/bootstrap/config/conexao.php');
-include ('autentica.php');
+include ('/home/usuario/cauamorgado/bootstrap/autentica.php');
 
 $fabrica = $_SESSION['fabrica'];
 
-$tabela = 'produto';
+$tabela = 'peca';
 
-$diretorio = '/home/usuario/cauamorgado/bootstrap/export';
+$diretorio = '/home/usuario/cauamorgado/bootstrap/export-php/export';
 
 $caminho = $diretorio . '/export.csv';
 
@@ -14,13 +14,13 @@ $arquivo = fopen($caminho, 'w');
 
 if ($arquivo !== false) {
 
-  $header = array('Descrição', 'Referência', 'Garantia', 'Status');
+  $header = array('Descrição','Referência');
   fputcsv($arquivo, $header);
 
   $sql = "SELECT * FROM $tabela where fabrica = $fabrica";
   $res = pg_query($con, $sql);
   while ($row = pg_fetch_array($res)) {
-    $line = array($row['descricao'], $row['referencia'], $row['garantia'], $row['ativo']);
+    $line = array($row['descricao'], $row['referencia']);
     fputcsv($arquivo, $line);
   }
 

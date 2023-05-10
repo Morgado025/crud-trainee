@@ -9,7 +9,7 @@ include('nav.php');
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,18 +36,17 @@ include('nav.php');
             margin-top: 100px;
              } 
 img {
-  max-width: 100%;
+  max-width: 250;
   height: auto;
 }
 
 </style>
         <div class="panel-body" id="mud"> 
             <div class="inline-group">
-                
                 <ul>
                 <div class="col-md-4">
                     <li>
-                        <img src="img/potato.png" width="250">
+                        <img src="img/potato.png" id='teste' width="250">
                     </li>
                     </div>
                 <div class="col-md-4">

@@ -69,7 +69,7 @@ if ($_POST['form_submit'] == 'Enviar') {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -211,7 +211,7 @@ if ($_POST['form_submit'] == 'Enviar') {
                 <td><?= $garantia ?></td>
                 <td><?= $ativo ?></td>
                 <td><button type="button" id="btnn" onclick="retornaProduto('<?= $produto ?>', '<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-default">Editar</button></td>
-                <td><a type="submit" href="exportar_produto.php" class="btn btn-default">Exportar</a></td>
+                <td><a type="submit" href="export-php/exportar_produto.php" class="btn btn-default">Exportar</a></td>
                 <td> <button type="button" id="btnn2" onclick="retornaProduto('<?= $produto ?>', '<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>

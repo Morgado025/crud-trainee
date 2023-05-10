@@ -49,7 +49,7 @@ if ($_POST['form_submit'] == 'Enviar') {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="css/menu.css">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

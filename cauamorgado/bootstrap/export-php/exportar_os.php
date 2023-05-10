@@ -1,6 +1,6 @@
 <?php
 include ('/home/usuario/cauamorgado/bootstrap/config/conexao.php');
-include ('autentica.php');
+include ('/home/usuario/cauamorgado/bootstrap/autentica.php');
 
 $id = $_GET['id'];
 
@@ -14,7 +14,7 @@ $fabrica = $_SESSION['fabrica'];
 
 $tabela = 'os';
 
-$diretorio = '/home/usuario/cauamorgado/bootstrap/export';
+$diretorio = '/home/usuario/cauamorgado/bootstrap/export-php/export';
 
 $caminho = $diretorio . '/export.csv';
 

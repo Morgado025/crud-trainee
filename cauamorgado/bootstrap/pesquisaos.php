@@ -128,7 +128,7 @@ if(isset($_POST['del'])) {
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="cadastroos.css">
+    <link rel="stylesheet" href="css/cadastroos.css">
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -459,7 +459,7 @@ if(isset($_POST['del'])) {
                 <td><?= $produto ?></td>
 
                 <td><a type="submit" href="cadastroos.php?id=<?=$id?>" class="btn btn-default" id=btnn>Editar</a></td>
-                <td><a type="submit" href="exportar_os.php?id=<?=$id?>" class="btn btn-default" id=bot6>Exportar</a></td>
+                <td><a type="submit" href="export-php/exportar_os.php?id=<?=$id?>" class="btn btn-default" id=bot6>Exportar</a></td>
                    <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
@@ -489,7 +489,6 @@ if(isset($_POST['del'])) {
                 <div class="col-sm-offset-2 col-sm-10">
                     <a type="submit" href="menu.php" class="btn btn-default" id=bot>Voltar</a>
                 </div>
-                  
             </div>
         </form>
     </div>
