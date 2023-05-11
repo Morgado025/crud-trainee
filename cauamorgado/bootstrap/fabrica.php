@@ -17,6 +17,10 @@ if ($_POST['form_submit'] == 'Enviar') {
     $fabrica = (int)$_POST['fabrica_key'];
     
    
+    if (empty($_POST["nome"])) {
+        $Error = "Nome é um Campo Obrigatório";
+    }
+
       if((strlen(($Error))==0) && ($fabrica == 0)){
         $sql_insert = "INSERT INTO fabrica(nome) values ('$nome')";
         $res = pg_query($con, $sql_insert);
@@ -121,7 +125,6 @@ if ($_POST['form_submit'] == 'Enviar') {
             <tr>
                 <th>Nome</th>            
                 <th>Edição</th>
-                <th>Remover</th>
             </tr>
         </thead>
         <tbody>
@@ -135,23 +138,6 @@ if ($_POST['form_submit'] == 'Enviar') {
             <tr>
                 <td><a id="table" href="#" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"><?= $nome ?></a></td>
                 <td><button type="button" id="btnn" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');"class="btn btn-default">Editar</button></td>
-                <td> <button type="button" id="btnn2" onclick="retornafabrica('<?= $nome ?>', '<?= $key ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                Excluir
-                </button>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel">Tem certeza da exclusão desse item? </h3>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                        <button type="submit" name="del" id="btnn3" class="btn btn-primary">Sim</button>
-                    </div>
-                    </div>
-                </div>
-                </div></td>
             </tr>
             <?php } ?>
         </tbody>
