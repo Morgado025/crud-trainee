@@ -7,41 +7,18 @@ include('nav.php');
 
 ?>
 
-<?php
-$Error = "";
-$Suc = ""; 
+    <?php
+    $Error = "";
+    $Suc = ""; 
 
-if(isset($_POST['form_submit'])) {
+    if(isset($_POST['form_submit'])) {
     $databertura = $_POST['databertura'];
-    $notafiscal = $_POST['notafiscal'];
-    $datacompra = $_POST['datacompra'];
-    $aparencia = $_POST['aparencia'];
-    $acessorios = $_POST['acessorios'];
-    $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $cep = $_POST['cep'];
-    $estado = $_POST['estado'];
-    $cidade = $_POST['cidade'];
-    $bairro = $_POST['bairro'];
-    $endereco = $_POST['endereco'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $telefone = $_POST['telefone'];
-    $celular = $_POST['celular'];
-    $email = $_POST['email'];
     $numero_serie = $_POST['numero_serie'];
     $referencia = $_POST['referencia'];
     $descricao = $_POST['descricao'];
-    $selectdefeito = $_POST['selectdefeito'];
-    $produto = $_POST['produto'];
-    $ativo = ($_POST['check'] == "t") ? 'true' : 'false';
-    $tipo_atendimento = (int)$_POST['tipo_atendimento'];
-    $select_tipoatendimento = $_POST['select_tipoatendimento'];
     $datafechamento = $_POST['datafechamento'];
     $datadigitacao = $_POST['datadigitacao'];
     $tipo_data = $_POST['data'];
-    $databertura = $_POST['databertura'];
-    $datacompra = $_POST['datacompra'];
     $data_inicio = $_POST['datainicio'];
     $data_fim = $_POST['datafim'];
     $fabrica = $_SESSION['fabrica'];
@@ -58,20 +35,13 @@ if(isset($_POST['form_submit'])) {
             $cond .= "and os.data_abertura = '$databertura'";
         }
 
-    
     $datacompra = preg_replace('/[^0-9\/-]/', '', $datacompra );
     $datacompra  = str_replace('-', '', $datacompra ); 
         if (!empty($_POST["datadigitacao"])) {
             $cond .= "and os.data_compra = '$datacompra'";
         }
 
-        $cpf = preg_replace('/[^0-9]/', '', $cpf);
-        if (!empty($cpf)) {
-        $cond .= "and os.cpf_cnpj = '$cpf'";
-            } else if (!filter_var($cpf, FILTER_VALIDATE_INT)) {
-    
-
-        } if (!empty($_POST["numero_serie"])) {
+        if (!empty($_POST["numero_serie"])) {
             $cond .= "and os.numero_serie = '$numero_serie'";
         }
         
@@ -82,35 +52,32 @@ if(isset($_POST['form_submit'])) {
         if (!empty($_POST["descricao"])) {
             $cond .= "and produto.descricao = '$descricao'";
         }
-
+        
         if (!empty($_POST['datainicio']) && !empty($_POST['datafim'])) {
-            $dataInicio = $_POST['datainicio'];
-            $dataFim = $_POST['datafim'];
-            $tipo_data = $_POST['data']; 
+           
             $cond = " AND os.$tipo_data BETWEEN '$dataInicio' AND '$dataFim'";
 
         } else {
             $Error = "Defina o período a ser pesquisado";
         }
         
-        if ((strlen(trim($Error)) == 0)) {
+        if (strlen(trim($Error)) == 0) {
             $sql = "SELECT os.*, produto.descricao, produto.referencia
                     FROM OS
                     JOIN produto ON os.produto = produto.produto
                     WHERE os.fabrica = '$fabrica'$cond";
-        }
-           
-        $res = pg_query($con, $sql);
-        
-        if (strlen(pg_last_error($con)) <= 0 && pg_num_rows($res) == 0 && strlen(trim($Error)) == 0) {
-        
-            $Error = "Nenhum Registro Encontrado!";
-        } else {
-            $Suc = "Dados Encontrados com Sucesso!";
+
+            $res = pg_query($con, $sql);
+
+            if (pg_num_rows($res) == 0) {
+                $Error = "Nenhum Registro Encontrado!";
+            } else {
+                $Suc = "Dados Encontrados com Sucesso!";
+            }
         }
     }
-
     
+
 
 if(isset($_POST['del'])) {
     $id = $_POST['id']; 
@@ -170,36 +137,17 @@ if(isset($_POST['del'])) {
             $(".descricao").val(descricao);           
         }
 
-        function retornaOS(id,produto,referencia,descricao, ativo){
+        function retornaOS(id,produto,numero_serie,referencia,descricao){
             console.log("chegou aqui " +produto)
 
             $(".id").val(id);
             $(".produto").val(produto);
+            $(".numero_serie").val(numero_serie);
             $(".referencia").val(referencia);
             $(".descricao").val(descricao);           
         }
 
     
-        $(function () {
-            Shadowbox.init();
-            $(".abrir2").click(function(){
-
-                var referencia = $(".referencia").val(); 
-                var descricao = $(".descricao").val(); 
-                var data_abertura = $(".databertura").val(); 
-                var aparencia = $(".aparencia").val(); 
-              
-                console.log("referencia", referencia, "descricao", descricao);
-
-                Shadowbox.open({
-                    content: "pesquisaos.php?referencia=" + referencia + "&descricao=" + descricao,
-                    player: "iframe",
-                    title: "",
-                    width: 1300,
-                    height: 600
-                });
-            });
-        });
     </script>
 </head>
 <body>
@@ -300,7 +248,7 @@ if(isset($_POST['del'])) {
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Número de série:</label>
                 <div class="col-sm-10">
-                    <input type="text" id="nms" class="form-control numero_serie" name="numero_serie" placeholder="Número de série" value="<?php echo isset($_POST['numero_serie']) ? $_POST['numero_serie'] : ''; ?>" maxlength="50">
+                    <input type="text" id="nms" class="form-control numero_serie" name="numero_serie" placeholder="Número de série" value="<?= $numero_serie ?>" maxlength="50">
                 </div>
             </div>
             <br>
@@ -423,8 +371,6 @@ if(isset($_POST['del'])) {
                 $produto = pg_fetch_result($res, $i, 'produto');
                 $id = pg_fetch_result($res, $i, 'os');
                 $tipo_atendimento = pg_fetch_result($res, $i, 'tipo_atendimento');
-                $select_tipoatendimento = pg_fetch_result($res, $i, 'tipo_atendimento');
-
             } 
             ?>
          
@@ -455,7 +401,7 @@ if(isset($_POST['del'])) {
 
                 <td><a type="submit" href="cadastroos.php?id=<?=$id?>" class="btn btn-default" id=btnn>Editar</a></td>
                 <td><a type="submit" href="export-php/exportar_os.php?id=<?=$id?>" class="btn btn-default" id=bot6>Exportar</a></td>
-                   <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>' ,'<?= $referencia ?>', '<?= $descricao ?>', '<?= $garantia ?>', '<?= $ativo ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                   <td> <button type="button" id="btnn2" onclick="retornaOS('<?= $id ?>', '<?= $produto ?>','<?= $numero_serie ?>', '<?= $referencia ?>', '<?= $descricao ?>');" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Excluir
                 </button>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

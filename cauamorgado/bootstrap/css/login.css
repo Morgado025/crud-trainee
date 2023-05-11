@@ -7,7 +7,7 @@ body {
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center center;
-    height: 100vh;
+    height: 130vh;
     margin: 0px;
     display: grid;
     grid-template-rows: 120px 1fr 60px;

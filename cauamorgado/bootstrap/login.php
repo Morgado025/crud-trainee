@@ -20,14 +20,15 @@ if(isset($_POST['form_submit'])) {
                 $Error = "O Campo nome não aceita esse tipo de valor";
            } 
     
-        if (empty($_POST["email"])) {
-            $Error = "Email é um Campo Obrigatório";
-        }
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                     $Error = "Email inválido";
                 }
-            
+                
+            if (empty($_POST["email"])) {
+                $Error = "Email é um Campo Obrigatório";
+            }
+
             if (empty($_POST["senha"])) {   
                 $Error = "Senha é um Campo Obrigatório";
             }   
@@ -144,20 +145,18 @@ if(isset($_POST['form_submit'])) {
                     <a type="submit" href="index.php" class="btn btn-default" id=bot>Voltar</a>
                 </div>
                 <div class="panel-footer" id="mud">
-                    <?php 
-                        if(isset($_POST['form_submit'])){
-                    ?>
-                    <i id ="alert" class="glyphicon glyphicon-warning-sign"> </i> 
-                    <?php 
-                    if(strlen(trim($Error))==0){
-                        echo $Suc;
-                    }else{
-                        echo $Error;
-                    }
-                    ?> 
-                    <?php   
-                        }
-                    ?>  
+            <?php if(isset($_POST['form_submit'])): ?>
+                <?php if(strlen(trim($Error)) == 0): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo $Suc; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $Error; ?>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            </div>
                 </div>      
             </div>
         </form>

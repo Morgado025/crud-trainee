@@ -268,30 +268,35 @@ if(isset($_GET['id'])){
       $sql2 =  "SELECT * FROM os WHERE os = $id";
       $res = pg_query($con, $sql2);
 
-      for($i = 0; $i < pg_num_rows($res); $i++) {
-        $dataabertura = pg_fetch_result($res, $i, 'data_abertura');
-        $notafiscal = pg_fetch_result($res, $i, 'nota_fiscal');
-        $datacompra = pg_fetch_result($res, $i, 'data_compra');
-        $aparencia = pg_fetch_result($res, $i, 'aparencia');
-        $acessorios = pg_fetch_result($res, $i, 'acessorio');
-        $nome = pg_fetch_result($res, $i, 'nome_consumidor');
-        $cpf =pg_fetch_result($res, $i, 'cpf_cnpj');
-        $cep = pg_fetch_result($res, $i, 'cep_consumidor');
-        $estado = pg_fetch_result($res, $i, 'estado_consumidor');
-        $cidade = pg_fetch_result($res, $i, 'cidade_consumidor');
-        $bairro = pg_fetch_result($res, $i, 'bairro_consumidor');
-        $endereco = pg_fetch_result($res, $i, 'endereco_consumidor');
-        $numero = pg_fetch_result($res, $i, 'numero_consumidor');
-        $telefone = pg_fetch_result($res, $i, 'telefone_consumidor');
-        $celular = pg_fetch_result($res, $i, 'celular_consumidor');
-        $email = pg_fetch_result($res, $i, 'email_consumidor');    
-        $produto = pg_fetch_result($res, $i, 'produto');            
-        $defeito = pg_fetch_result($res, $i, 'defeito');            
-        $numero_serie = pg_fetch_result($res, $i, 'numero_serie');
-        $selectdefeito = pg_fetch_result($res, $i, 'defeito');
-        $complemento = pg_fetch_result($res, $i, 'complemento');
-        $tipo_atendimento = pg_fetch_result($res, $i, 'tipo_atendimento');
-        $select_tipoatendimento = pg_fetch_result($res, $i, 'tipo_atendimento');
+      if ($res){
+        $row = pg_fetch_assoc($res);
+      
+        if($row) {
+
+        $dataabertura = $row['data_abertura'];
+        $notafiscal = $row['nota_fiscal'];
+        $datacompra = $row['data_compra'];
+        $aparencia = $row['aparencia'];
+        $acessorios = $row['acessorio'];
+        $nome = $row['nome_consumidor'];
+        $cpf =$row['cpf_cnpj'];
+        $cep = $row['cep_consumidor'];
+        $estado = $row['estado_consumidor'];
+        $cidade = $row['cidade_consumidor'];
+        $bairro = $row['bairro_consumidor'];
+        $endereco = $row['endereco_consumidor'];
+        $numero = $row['numero_consumidor'];
+        $telefone = $row['telefone_consumidor'];
+        $celular = $row['celular_consumidor'];
+        $email = $row['email_consumidor'];    
+        $produto = $row['produto'];            
+        $defeito = $row['defeito'];            
+        $numero_serie = $row['numero_serie'];
+        $selectdefeito = $row['defeito'];
+        $complemento = $row['complemento'];
+        $tipo_atendimento = $row['tipo_atendimento'];
+        $select_tipoatendimento = $row['tipo_atendimento'];
+        }
       }
       function organizar_data($data) {
         $partes = explode('-', $data);
@@ -543,7 +548,7 @@ if(isset($_GET['id'])){
                     value="<?= $cep ?>" maxlength="10">
                     <script> 
                     
-                    $("#cep").change(function(){
+                    $("#cep").blur(function(){
                         var cep = $(this).val(); 
 
                         $.ajax({

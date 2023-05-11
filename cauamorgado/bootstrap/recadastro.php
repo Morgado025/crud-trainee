@@ -2,7 +2,6 @@
 include "config/conexao.php";
 include "valida.php";
 include "autentica.php";
-
 ?>
 
 <?php
