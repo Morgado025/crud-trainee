@@ -1,60 +1,59 @@
 <?php
 include "config/conexao.php";
-?>
 
-<?php
 $Error = "";
+$Suc = "";
 
-if(isset($_POST['form_submit'])) {
+if (isset($_POST['form_submit'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirmarsenha = $_POST['confirmarsenha'];
     $fabrica = (int)$_POST['fabrica_key'];
-        
-        if (empty($_POST["nome"])) {
-        $Error = "Nome é um Campo Obrigatório";
-        }   
-        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_VALIDATE_INT);
-        if(filter_var($nome, FILTER_VALIDATE_INT)) {  
-                $Error = "O Campo nome não aceita esse tipo de valor";
-           } 
-    
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    $Error = "Email inválido";
-                }
-                
-            if (empty($_POST["email"])) {
-                $Error = "Email é um Campo Obrigatório";
-            }
 
-            if (empty($_POST["senha"])) {   
-                $Error = "Senha é um Campo Obrigatório";
-            }   
-                elseif(strlen(trim($senha)) <= 6){
-                    $Error = "A senha deve ter, no mínimo, 6 caracteres.";
-                }   
-                elseif (empty($_POST["confirmarsenha"])) {
-                    $Error = "Confirmar senha é um Campo Obrigatório";
-                }
-                elseif($senha != $confirmarsenha){
-                    $Error = "As senhas não são iguais";
-                }      
-                
-            if(strlen(trim($Error))==0){
-                $sql = "INSERT INTO usuario(nome, email, senha, fabrica) VALUES ('$nome', '$email', '$senha', '$fabrica')";
-                $res = pg_query($con, $sql);
-                if(strlen(pg_last_error($con)) > 0){
-                    $Error = "Falha ao cadastrar";
-                }
-                else{
-                    $Suc = "Usuário Cadastrado com Sucesso!";
-                }
-            
-            }
+    if (empty($_POST["nome"])) {
+        $Error = "Nome é um Campo Obrigatório";
+    } else {
+        $sql = "SELECT COUNT(*) FROM usuario WHERE nome = '$nome'";
+        $result = pg_query($con, $sql);
+        $row = pg_fetch_row($result);
+        if ($row[0] > 0) {
+            $Error = "Nome já cadastrado. Escolha outro nome.";
         }
-?> 
+    }
+
+    if (empty($_POST["email"])) {
+        $Error = "Email é um Campo Obrigatório";
+    } else {
+        $sql = "SELECT COUNT(*) FROM usuario WHERE email = '$email'";
+        $result = pg_query($con, $sql);
+        $row = pg_fetch_row($result);
+        if ($row[0] > 0) {
+            $Error = "Email já cadastrado. Escolha outro email.";
+        }
+    }
+
+    if (empty($_POST["senha"])) {
+        $Error = "Senha é um Campo Obrigatório";
+    } elseif (strlen(trim($senha)) <= 6) {
+        $Error = "A senha deve ter, no mínimo, 6 caracteres.";
+    } elseif (empty($_POST["confirmarsenha"])) {
+        $Error = "Confirmar senha é um Campo Obrigatório";
+    } elseif ($senha != $confirmarsenha) {
+        $Error = "As senhas não são iguais";
+    }
+
+    if (strlen(trim($Error)) == 0) {
+        $sql = "INSERT INTO usuario(nome, email, senha, fabrica) VALUES ('$nome', '$email', '$senha', '$fabrica')";
+        $res = pg_query($con, $sql);
+        if (strlen(pg_last_error($con)) > 0) {
+            $Error = "Falha ao cadastrar";
+        } else {
+            $Suc = "Usuário Cadastrado com Sucesso!";
+        }
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt">

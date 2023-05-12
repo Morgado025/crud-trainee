@@ -1,7 +1,7 @@
 <?php
 include "config/conexao.php";
 include "valida.php";
-include "autentica.php";
+include "autentica.php";    
 ?>
 
 <?php
@@ -60,15 +60,16 @@ if(isset($_POST['form_submit'])) {
 
     if(isset($_GET['usuario'])){
         $id = $_GET['usuario'];
-        $fabrica = $_SESSION['fabrica'];
 
-        $sql = "SELECT * FROM usuario where fabrica = $fabrica"; 
+        $sql = "SELECT * FROM usuario where usuario = $id"; 
         $res = pg_query($con, $sql);
         
-        for($i = 0; $i < pg_num_rows($res); $i++) {
-            $usuario = pg_fetch_result($res, $i, 'usuario');
-            $nome = pg_fetch_result($res, $i, 'nome');
-            $email = pg_fetch_result($res, $i, 'email');
+        if($res){
+            $row = pg_fetch_assoc($res);
+
+            $usuario = $row['usuario'];
+            $nome = $row['nome'];
+            $email = $row['email'];
         }
     }
 ?> 
